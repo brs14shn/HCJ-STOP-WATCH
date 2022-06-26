@@ -11,17 +11,20 @@ const millisecondsSpan=document.getElementById("milliseconds");
 const startBtn=document.querySelector(".start");
 const stopBtn=document.querySelector(".stop");
 const resetBtn=document.querySelector(".reset");
+const btn=document.querySelector(".buttons");
 
 const startTimer=()=>{
-    console.log("tıklandı");
+   
     clearInterval(interval);
     interval=setInterval(startWatch,10)
 }
 const stopTimer=()=>{
+ 
     clearInterval(interval);  
 }
 
 const resetTimer=()=>{
+   
     milliseconds=0;
     seconds=0;
     minutes=0;
@@ -45,7 +48,7 @@ function startWatch(){
     //* =======Seconds==========*
     if(seconds<10){
         secondsSpan.innerHTML=`0${seconds}`;
-    }else if(seconds){
+    }else if(seconds>59){
         minutes++;
         seconds=0;
         secondsSpan.innerHTML="00";
@@ -58,14 +61,23 @@ function startWatch(){
     }else if(minutes>59){
        
        minutes=0;
-       minutesSpan.innerHTML="00"; //? Change
+       minutesSpan.innerHTML=minutes; //? Change
     }else{
        minutesSpan.innerHTML=minutes;
     }
 
 }
 
-startBtn.addEventListener("click",startTimer);
-stopBtn.addEventListener("click",stopTimer);
-resetBtn.addEventListener("click",resetTimer);
+btn.addEventListener("click",(e)=>{
+   if(e.target.classList.contains("start")){
+    startTimer()
+   }else if(e.target.classList.contains("stop")){
+    stopTimer()
+   }else{
+    resetTimer()
+   }
+})
+// startBtn.addEventListener("click",startTimer);
+// stopBtn.addEventListener("click",stopTimer);
+// resetBtn.addEventListener("click",resetTimer);
 
