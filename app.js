@@ -14,17 +14,14 @@ const resetBtn=document.querySelector(".reset");
 const btn=document.querySelector(".buttons");
 
 const startTimer=()=>{
-   
     clearInterval(interval);
     interval=setInterval(startWatch,10)
 }
 const stopTimer=()=>{
- 
     clearInterval(interval);  
 }
 
 const resetTimer=()=>{
-   
     milliseconds=0;
     seconds=0;
     minutes=0;
