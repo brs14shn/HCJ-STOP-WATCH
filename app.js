@@ -13,6 +13,7 @@ const stopBtn=document.querySelector(".stop");
 const resetBtn=document.querySelector(".reset");
 
 const startTimer=()=>{
+    console.log("tıklandı");
     clearInterval(interval);
     interval=setInterval(startWatch,10)
 }
@@ -21,7 +22,7 @@ const stopTimer=()=>{
 }
 
 const resetTimer=()=>{
-    miliseconds=0;
+    milliseconds=0;
     seconds=0;
     minutes=0;
     minutesSpan.innerHTML="00"
@@ -30,12 +31,41 @@ const resetTimer=()=>{
 }
 
 function startWatch(){
+    //* ===Milliseconds========
     milliseconds++;
     if(milliseconds<9){
         millisecondsSpan.innerHTML=`0${milliseconds}`
     }else if(milliseconds>99){
         milliseconds=0;
         millisecondsSpan.innerHTML="00";
+        seconds++;
+    }else{
+    millisecondsSpan.innerHTML=milliseconds;
+    }
+    //* =======Seconds==========*
+    if(seconds<10){
+        secondsSpan.innerHTML=`0${seconds}`;
+    }else if(seconds){
+        minutes++;
+        seconds=0;
+        secondsSpan.innerHTML="00";
+    }else{
+        secondsSpan.innerHTML=seconds;
+    }
+    //*=========minutes===========*
+    if(minutes<10){
+       minutesSpan.innerHTML=`0${minutes}`;
+    }else if(minutes>59){
+       
+       minutes=0;
+       minutesSpan.innerHTML="00"; //? Change
+    }else{
+       minutesSpan.innerHTML=minutes;
     }
 
 }
+
+startBtn.addEventListener("click",startTimer);
+stopBtn.addEventListener("click",stopTimer);
+resetBtn.addEventListener("click",resetTimer);
+
